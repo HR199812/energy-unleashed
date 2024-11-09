@@ -6,7 +6,8 @@ export const CONSTANT_VARIABLES = {
     GITHUB_PROFILE: "HR199812",
     DETAILS: "DESIGN & DEVELOPED BY",
     GITHUB: "Github",
+    LINKEDIN: "LinkedIn",
     EMAIL:"hritwik72@gmail.com",
-    LINKEDIN_LINK:"",
-    GITHUB_LINK:""
+    LINKEDIN_LINK:"https://www.linkedin.com/in/hritwik-agarwal-99a5a0102/",
+    GITHUB_LINK:"https://github.com/HR199812"
 }

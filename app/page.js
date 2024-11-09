@@ -3,7 +3,36 @@ import Image from "next/image";
 import React, { useState, useRef, useEffect } from 'react';
 import { CONSTANT_VARIABLES } from '../constants';
 
+function cardData(year) {
+  return (
+    <div className="card-data">
+      <h2 className="header-one">
+        Upcoming Events
+      </h2>
+      <ol class="styled-list">
+        <li>Lorem ipsum</li>
+        <li>Lorem ipsum</li>
+      </ol>
+
+      <h2 className="header-two">
+        {year - 1} highlights
+      </h2>
+      <ol class="styled-list">
+        <li>Lorem ipsum</li>
+        <li>Lorem ipsum</li>
+      </ol>
+
+      <div className="connectWithMe">
+        <p><a target="_blank" rel="noopener noreferrer" href={CONSTANT_VARIABLES.GITHUB_LINK}>{CONSTANT_VARIABLES.GITHUB}</a></p>
+        <p><a target="_blank" rel="noopener noreferrer" href={CONSTANT_VARIABLES.LINKEDIN_LINK}>{CONSTANT_VARIABLES.LINKEDIN}</a></p>
+        <span>{CONSTANT_VARIABLES.EMAIL}</span>
+      </div>
+    </div>
+  )
+}
 export default function Home() {
+
+  const date = new Date();
   const [isHovered, setIsHovered] = useState(false);
   const [bgImage, setBgImage] = useState(CONSTANT_VARIABLES.MONSTER_BACKROUND);
   const infoCardRef = useRef(null);
@@ -14,7 +43,13 @@ export default function Home() {
     setBgImage(CONSTANT_VARIABLES.REDBULL_BACKROUND);
     if (infoCardRef.current) {
       infoCardRef.current.style.borderImage = "linear-gradient(45deg, #DB0A40, #FFCC00) 1"
-      infoCardRef.current.style.color = "linear-gradient(45deg, #DB0A40, #FFCC00) 1"
+      infoCardRef.current.style.color = "linear-gradient(45deg, #DB0A40, #FFCC00) 1";
+      const textElements = infoCardRef.current.querySelectorAll('.card-data h2, .card-data p');
+      textElements.forEach(element => {
+        element.style.backgroundImage = "linear-gradient(45deg, #DB0A40, #FFCC00)";
+        element.style.webkitBackgroundClip = "text";
+        element.style.color = "transparent"; // Make the text transparent so the gradient shows
+      });
     }
   };
 
@@ -24,6 +59,12 @@ export default function Home() {
     if (infoCardRef.current) {
       infoCardRef.current.style.borderImage = "linear-gradient(45deg, #000000, #95D600) 1";
       infoCardRef.current.style.color = "linear-gradient(45deg, #000000, #95D600) 1";
+      const textElements = infoCardRef.current.querySelectorAll('.card-data h2, .card-data p');
+      textElements.forEach(element => {
+        element.style.backgroundImage = "linear-gradient(45deg, #95D600, #000000)";
+        element.style.webkitBackgroundClip = "text";
+        element.style.color = "transparent"; // Make the text transparent so the gradient shows
+      });
     }
   };
 
@@ -65,10 +106,6 @@ export default function Home() {
         </div>
         <div className="author">
           <h3>{CONSTANT_VARIABLES.AUTHOR}</h3>
-          <div >
-            <p>{CONSTANT_VARIABLES.GITHUB}</p>
-            <p>{CONSTANT_VARIABLES.GITHUB_PROFILE}</p>
-          </div>
           <div>
             <p>{CONSTANT_VARIABLES.DETAILS}</p>
             <p>{CONSTANT_VARIABLES.AUTHOR}</p>
@@ -95,6 +132,7 @@ export default function Home() {
               ref={infoCardRef}
               onMouseMove={e => handleMouseMove(e, 'card')}
               onMouseLeave={handleCardMouseLeave('card')}>
+              {cardData(date.getFullYear())}
             </div>
           </div>
           :
@@ -107,7 +145,9 @@ export default function Home() {
             <div className="info-card"
               ref={infoCardRef}
               onMouseMove={e => handleMouseMove(e, 'card')}
-              onMouseLeave={handleCardMouseLeave('card')}></div>
+              onMouseLeave={handleCardMouseLeave('card')}>
+              {cardData(date.getFullYear())}
+            </div>
           </div>
         }
       </div>
