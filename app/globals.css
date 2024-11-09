@@ -262,4 +262,10 @@ header .author img {
     transition: 0.7s;
     z-index: 1;
   }
+  .info-card {
+    min-width: 27%;
+    min-height: 44%;
+    right: 4%;
+    bottom: 160px;
+  }
 }
