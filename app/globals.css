@@ -152,7 +152,7 @@ header .author img {
   height: 260px;
   left: 50%;
   transform: translateX(-44%) translateY(18%);
-  bottom: 30px;
+  bottom: 20px;
   transition: 0.7s;
   z-index: 1;
 }
