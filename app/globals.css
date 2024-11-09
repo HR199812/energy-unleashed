@@ -172,30 +172,8 @@ header .author img {
   rotate: -25deg;
 }
 
-@media screen and (max-width: 1023px) {
-
-  .soda {
-    width: 400px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .soda {
-    width: 250px;
-  }
-
-  header img {
-    display: none;
-  }
-
-  header .author {
-    width: 100%;
-  }
-
-}
-
 #monster-truck {
-  height: 600px !important;
+  height: 600px;
   width: 40%;
   transform: rotateY(0deg) rotateX(0deg);
   left: -20px;
@@ -246,4 +224,42 @@ header .author img {
   width: 40px !important;
   height: 40px !important;
   cursor: pointer;
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  #monster-truck {
+    height: 460px !important;
+    width: 40%;
+    transform: rotateY(0deg) rotateX(0deg);
+    left: -20px;
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+  }
+
+  #monster-truck:hover {
+    transform: rotateX(10deg);
+    transition: transform 1s ease-in-out;
+  }
+
+  #redbull-bike {
+    height: 460px;
+    width: 40%;
+    transform: translateX(-10%) !important;
+    transition: 0.7s;
+  }
+
+  .soda {
+    width: 234px;
+    height: 460px;
+  }
+
+  .images-and-divs img:nth-child(1) {
+    position: absolute;
+    height: 220px;
+    left: 50%;
+    transform: translateX(-44%) translateY(18%);
+    bottom: 40px;
+    transition: 0.7s;
+    z-index: 1;
+  }
 }
