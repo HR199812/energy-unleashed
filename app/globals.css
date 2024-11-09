@@ -144,7 +144,6 @@ header .author img {
   inset: 0 0 0 0;
   width: 100%;
   transition: 0.7s ease-in-out;
-
 }
 
 .images-and-divs img:nth-child(1) {
@@ -254,18 +253,57 @@ header .author img {
   }
 
   .images-and-divs img:nth-child(1) {
-    position: absolute;
     height: 220px;
     left: 50%;
     transform: translateX(-44%) translateY(18%);
     bottom: 40px;
-    transition: 0.7s;
-    z-index: 1;
   }
+
   .info-card {
     min-width: 27%;
     min-height: 44%;
     right: 4%;
     bottom: 160px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .soda {
+    transform: translateY(22%) translateX(-50%) !important;
+    width: 174px;
+    height: 330px;
+  }
+
+  .images-and-divs img:nth-child(2),
+  .info-card {
+    display: none;
+  }
+
+  .images-and-divs img:nth-child(1) {
+    height: 120px;
+    left: 50%;
+    transform: translateX(-44%) translateY(18%);
+    bottom: 20px;
+  }
+
+  .header {
+    height: 100vh;
+    /* Full viewport height */
+    padding-top: 50px;
+    /* Adjust if needed */
+    flex-wrap: wrap;
+  }
+
+  header h1 {
+    font-size: 18vw;
+    padding-bottom: 4px;
+  }
+
+  header h3 {
+    font-size: 12vw;
+  }
+
+  header .author div {
+    font-size: 10px;
   }
 }
