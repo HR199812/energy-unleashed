@@ -15,7 +15,235 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  color: #1E1E1E;
+  background-color: #CDCDCD;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image:
+    repeating-linear-gradient(to right, transparent 0 150px, rgba(134, 134, 134, 0.5) 150px 151px),
+    repeating-linear-gradient(to bottom, transparent 0 150px, rgba(134, 134, 134, 0.5) 150px 151px),
+    linear-gradient(to right, rgba(205, 205, 205, 0.001), rgba(205, 205, 205, 0.5)),
+    url(../public/images/monster-bg.jpg);
+  transition: background-image 1s ease-in-out, transform 1s ease-in-out;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  width: min(1300px, 90vw);
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 50px;
+  height: 0px;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-family: "Karantina", system-ui;
+  font-size: 8vw;
+  line-height: 0.8em;
+  padding-bottom: 4px;
+  mask-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  /* Mask the text */
+  mask-size: 100%;
+}
+
+header .author {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+header h3 {
+  font-family: "Karantina", system-ui;
+  font-size: 5vw;
+  mask-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  /* Mask the text */
+  mask-size: auto 100%;
+}
+
+header .author div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .author div p:nth-child(2) {
+  font-weight: 500;
+}
+
+header .author img {
+  width: 250px;
+}
+
+.banner {
+  margin-top: -50px;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.product {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 170px;
+  z-index: 2;
+  width: 500px;
+  transition: 0.7s;
+}
+
+.product .soda {
+  position: absolute;
+  bottom: 0;
+  left: calc(50%);
+  transform: translateX(-50%);
+}
+
+.soda {
+  --left: 0px;
+  background:
+    var(--url) var(--left),
+    url(../public/images/mockup.png) 0 0;
+  background-size: auto 100%;
+  width: 280px;
+  aspect-ratio: 2 / 4;
+  background-blend-mode: multiply;
+  transition: 0.8s;
+  mask-image: url(../public/images/mockup.png);
+  mask-size: auto 100%;
+}
+
+.soda:nth-child(2) {
+  opacity: 0;
+}
+
+.product:hover {
+  /* bottom: 300px; */
+}
+
+.product:hover .soda:nth-child(2) {
+  opacity: 1;
+  --left: 500px;
+}
+
+.product:hover .soda:nth-child(1) {
+  opacity: 0;
+  --left: 700px;
+}
+
+.images-and-divs {
+  position: absolute;
+  inset: 0 0 0 0;
+  width: 100%;
+  transition: 0.7s ease-in-out;
+
+}
+
+.images-and-divs img:nth-child(1) {
+  position: absolute;
+  height: 260px;
+  left: 50%;
+  transform: translateX(-44%) translateY(18%);
+  bottom: 30px;
+  transition: 0.7s;
+  z-index: 1;
+}
+
+.images-and-divs img:nth-child(2) {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+}
+
+.images-and-divs img:nth-child(3) {
+  position: absolute;
+  right: 0;
+  /* transform: translateY(-60%); */
+  bottom: -100px;
+  rotate: -25deg;
+}
+
+@media screen and (max-width: 1023px) {
+
+  .soda {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .soda {
+    width: 250px;
+  }
+
+  header img {
+    display: none;
+  }
+
+  header .author {
+    width: 100%;
+  }
+
+}
+
+#monster-truck {
+  height: 600px !important;
+  width: 40%;
+  transform: rotateY(0deg) rotateX(0deg);
+  left: -20px;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+#monster-truck:hover {
+  transform: rotateX(10deg);
+  transition: transform 1s ease-in-out;
+}
+
+#redbull-bike {
+  height: 500px;
+  transform: rotate(90deg);
+  transition: transform 1s ease-in-out;
+}
+
+.info-card {
+  min-width: 20%;
+  min-height: 50%;
+  background-color: #ffffffa8;
+  border-radius: 2px;
+  border: 2px solid transparent;
+  /* Set transparent border */
+  border-image: linear-gradient(45deg, #000000, #95D600) 1;
+  color: linear-gradient(45deg, #000000, #95D600) 1;
+  position: absolute;
+  right: 6%;
+  z-index: 1000;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg) rotateX(0deg);
+  bottom: 100px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 50px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease;
+  padding: 14px
+}
+
+.info-card:hover {
+  transform: rotateY(5deg) rotateX(-5deg);
+}
+
+#monster-logo {
+  transform: rotateY(40deg) rotateX(40deg) translateX(-65%) translateY(28%);
+}
+
+.svg-icons {
+  width: 40px !important;
+  height: 40px !important;
+  cursor: pointer;
 }

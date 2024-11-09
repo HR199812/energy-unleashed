@@ -1,101 +1,116 @@
+'use client';
 import Image from "next/image";
+import React, { useState, useRef, useEffect } from 'react';
+import { CONSTANT_VARIABLES } from '../constants';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [isHovered, setIsHovered] = useState(false);
+  const [bgImage, setBgImage] = useState(CONSTANT_VARIABLES.MONSTER_BACKROUND);
+  const infoCardRef = useRef(null);
+  const imageRef = useRef(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    setBgImage(CONSTANT_VARIABLES.REDBULL_BACKROUND);
+    if (infoCardRef.current) {
+      infoCardRef.current.style.borderImage = "linear-gradient(45deg, #DB0A40, #FFCC00) 1"
+      infoCardRef.current.style.color = "linear-gradient(45deg, #DB0A40, #FFCC00) 1"
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setBgImage(CONSTANT_VARIABLES.MONSTER_BACKROUND);
+    if (infoCardRef.current) {
+      infoCardRef.current.style.borderImage = "linear-gradient(45deg, #000000, #95D600) 1";
+      infoCardRef.current.style.color = "linear-gradient(45deg, #000000, #95D600) 1";
+    }
+  };
+
+  const handleMouseMove = (e, ref) => {
+    let xAxis = (window.innerWidth / 2 - e.pageX) / 65;
+    let yAxis = (window.innerHeight / 2 - e.pageY) / -60;
+    let refVariable = ref === 'card' ? infoCardRef : imageRef;
+    if (refVariable.current) {
+      refVariable.current.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      refVariable.current.style.transition = "none"; // Optional, to disable transition on move
+    }
+  };
+
+  const handleCardMouseLeave = (ref) => {
+    let refVariable = ref === 'card' ? infoCardRef : imageRef;
+    if (refVariable.current) {
+      refVariable.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      refVariable.current.style.transition = "all 0.5s ease"; // Adds smooth transition back to original state
+    }
+  };
+
+  const updateBackgroundImage = () => {
+    document.body.style.transition = 'background-image 1s ease-in-out';
+    document.body.style.backgroundImage = `
+    repeating-linear-gradient(to right, transparent 0 150px, rgba(134, 134, 134, 0.5) 150px 151px),
+      repeating-linear-gradient(to bottom, transparent 0 150px, rgba(134, 134, 134, 0.5) 150px 151px),
+      linear-gradient(to right, rgba(205, 205, 205, 0.001), rgba(205, 205, 205, 0.5)),
+      url('/images/${bgImage}')`;
+    document.body.style.backgroundPosition = 'center';
+  };
+
+  useEffect(() => { updateBackgroundImage() }, [bgImage])
+
+  return (
+    <>
+      <header>
+        <div className="left">
+          <h1>{CONSTANT_VARIABLES.HEADER_1}</h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="author">
+          <h3>{CONSTANT_VARIABLES.AUTHOR}</h3>
+          <div >
+            <p>{CONSTANT_VARIABLES.GITHUB}</p>
+            <p>{CONSTANT_VARIABLES.GITHUB_PROFILE}</p>
+          </div>
+          <div>
+            <p>{CONSTANT_VARIABLES.DETAILS}</p>
+            <p>{CONSTANT_VARIABLES.AUTHOR}</p>
+          </div>
+        </div>
+      </header>
+      <div className="banner">
+        <div className="product"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}>
+          <div className="soda" style={{ "--url": "url('/images/monster-can-label.jpg')" }}>
+          </div>
+          <div className="soda" style={{ "--url": "url('/images/rebull-can-label.jpg')" }}>
+          </div>
+        </div>
+        {isHovered ?
+          <div className="images-and-divs">
+            <Image src="/images/redbull-logo.png" alt="" width={500} height={900} />
+            <Image ref={imageRef}
+              onMouseMove={e => handleMouseMove(e, 'image')}
+              onMouseLeave={handleCardMouseLeave('image')}
+              id="redbull-bike" src="/images/pngegg.png" alt="" width={500} height={700} />
+            <div className="info-card"
+              ref={infoCardRef}
+              onMouseMove={e => handleMouseMove(e, 'card')}
+              onMouseLeave={handleCardMouseLeave('card')}>
+            </div>
+          </div>
+          :
+          <div className="images-and-divs">
+            <Image id="monster-logo" src="/images/monster-logo.png" alt="" width={500} height={900} />
+            <Image ref={imageRef}
+              onMouseMove={e => handleMouseMove(e, 'image')}
+              onMouseLeave={handleCardMouseLeave('image')}
+              id="monster-truck" src="/images/monster-truck.png" alt="" width={700} height={200} />
+            <div className="info-card"
+              ref={infoCardRef}
+              onMouseMove={e => handleMouseMove(e, 'card')}
+              onMouseLeave={handleCardMouseLeave('card')}></div>
+          </div>
+        }
+      </div>
+    </>
   );
 }
