@@ -208,7 +208,7 @@ header .author img {
   bottom: 100px;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 50px rgba(0, 0, 0, 0.2);
   transition: transform 0.5s ease;
-  padding: 24px
+  padding: 24px;
 }
 
 .info-card:hover {
@@ -218,6 +218,7 @@ header .author img {
 .info-card .card-data ol li {
   color: #000000;
   transition: color 1s ease-in-out, background-image 1s ease-in-out;
+  animation: textGradientAnimation 3s infinite;
 }
 
 .info-card .card-data {
@@ -227,16 +228,19 @@ header .author img {
   /* For WebKit browsers */
   color: transparent;
   transition: color 1s ease-in-out, background-image 1s ease-in-out;
+  animation: textGradientAnimation 3s infinite;
 }
 
 .info-card .card-data h2 {
   font-size: 3vw;
   font-family: "Karantina", system-ui;
   color: linear-gradient(45deg, #000000, #95D600) 1;
+  animation: textGradientAnimation 3s infinite;
 }
 
 .info-card .card-data .header-two {
   margin-top: 24px;
+  animation: textGradientAnimation 3s infinite;
 }
 
 .info-card .card-data .connectWithMe {
@@ -254,11 +258,13 @@ header .author img {
   -webkit-background-clip: text;
   color: transparent; /* Make text transparent so gradient shows */
   transition: transform 0.3s ease, text-decoration 0.3s ease, color 0.3s ease;
+  animation: textGradientAnimation 3s infinite;
 }
 
 .info-card .card-data .connectWithMe p {
   cursor: pointer;
   transition: transform 0.3s ease, text-decoration 0.3s ease, color 0.3s ease;
+  animation: textGradientAnimation 3s infinite;
 }
 
 /* Hover effect */
@@ -268,7 +274,16 @@ header .author img {
   text-decoration-color: #000000; /* Set the line-through color */
   text-decoration-thickness: 2px; /* Thickness of the line-through */
   color: transparent; /* Keep the gradient color visible */
+  animation: textGradientAnimation 3s infinite;
 }
+
+/* Text gradient animation keyframes */
+@keyframes textGradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .styled-list {
   transition: transform 0.3s ease, text-decoration 0.3s ease;
   /* Smooth transition for text decoration and translation */

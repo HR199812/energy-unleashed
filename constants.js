@@ -1,5 +1,5 @@
 export const CONSTANT_VARIABLES = {
-    REDBULL_BACKROUND: "redbull-bg.jpg",
+    REDBULL_BACKROUND: "test5.jpg",
     MONSTER_BACKROUND: "monster-bg.jpg",
     HEADER_1: "ENERGY UNLEASHED",
     AUTHOR: "HRITWIK AGARWAL",
